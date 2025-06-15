@@ -13,6 +13,13 @@
 // limitations under the License.
 
 (() => {
+  
+  const video = document.querySelector("video");
+  if (video && video.hasAttribute("disablepictureinpicture")) { 
+    video.removeAttribute("disablepictureinpicture");
+    console.log("Removed disablepictureinpicture attribute");
+  }
+
   function findLargestPlayingVideo() {
     const videos = Array.from(document.querySelectorAll('video'))
       .filter(video => video.readyState !== 0)
@@ -26,6 +33,7 @@
     return videos[0];
   }
 
+  
   async function requestPictureInPicture(video) {
     try {
       await video.requestPictureInPicture();
